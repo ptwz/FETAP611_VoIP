@@ -3,6 +3,7 @@ import time
 import subprocess
 import linphone.Wrapper
 import thread
+import select
 
 class Phone(object):
     NSA = 3
@@ -65,7 +66,6 @@ class Phone(object):
         return int(l)
 
     def gpio_edge_thread(self):
-        import select
         to_watch = [self.NSA, self.OH, self.NSP]
         watch_names = [ "/sys/class/gpio/gpio{}/value".format(num) for num in to_watch ]
 
